@@ -1,0 +1,22 @@
+stages:
+  - build
+  - test
+  - deploy
+
+build:
+  stage: build
+  script:
+    - echo "Building the application..."
+    - docker build -t flask-app .
+
+test:
+  stage: test
+  script:
+    - echo "Running tests..."
+    - pytest
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Deploying the application..."
+    - docker run -d -p 5000:5000 flask-app
